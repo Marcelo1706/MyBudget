@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/nested1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Agregar Productos a la Lista"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+            <TextView
+                android:id="@+id/textView36"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Ingrese los productos que desea añadir a su lista de compras, y la cantidad que va a comprar"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <EditText
+                android:id="@+id/nombre_prod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Nombre del Producto"
+                android:inputType="textPersonName"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/precio_prod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Precio"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/cantidad_prod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Cantidad a Comprar"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/agregar_prod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/PM3435"
+                android:text="Agregar Producto"
+                android:textColor="@android:color/background_light"
+                tools:layout_editor_absoluteX="98dp"
+                tools:layout_editor_absoluteY="311dp" />
+
+            <TextView
+                android:id="@+id/textView37"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Productos Agregados"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <ListView
+                android:id="@+id/list_productos"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="350dp">
+
+            </ListView>
+
+            <Button
+                android:id="@+id/guardar_lista"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/PM3435"
+                android:text="Guardar Cambios"
+                android:textColor="@android:color/background_light"
+                tools:layout_editor_absoluteX="98dp"
+                tools:layout_editor_absoluteY="311dp" />
+
+            <Button
+                android:id="@+id/importar_prods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/PM3435"
+                android:text="Importar De Otra Lista"
+                android:textColor="@android:color/background_light"
+                tools:layout_editor_absoluteX="98dp"
+                tools:layout_editor_absoluteY="311dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

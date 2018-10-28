@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/PM3435">
+
+    <TextView
+        android:id="@+id/fecha_ini"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:layout_weight="1"
+        android:background="@android:color/background_light"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="99/99/9999"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/fecha_fin"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:layout_weight="1"
+        android:background="@android:color/background_light"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="99/99/9999"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/fondos_fin"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:layout_weight="1"
+        android:background="@android:color/background_light"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="$XXX,XXX.XX"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+</LinearLayout>

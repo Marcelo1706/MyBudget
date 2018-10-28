@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_resumen"
+            android:icon="@drawable/ic_assignment"
+            android:title="@string/resumen" />
+    </group>
+
+    <item android:title="@string/administrar_mybudget">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_fondos"
+                    android:icon="@drawable/ic_money"
+                    android:title="@string/fondos" />
+                <item
+                    android:id="@+id/nav_pagos"
+                    android:icon="@drawable/ic_payment"
+                    android:title="@string/pagos" />
+                <item
+                    android:id="@+id/nav_gastos"
+                    android:icon="@drawable/ic_trending_up"
+                    android:title="@string/gastos" />
+                <item
+                    android:id="@+id/nav_lista_super"
+                    android:icon="@drawable/ic_shopping_cart"
+                    android:title="@string/lista_de_supermercado" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="@string/ajustes">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_ajustes"
+                    android:icon="@drawable/ic_settings"
+                    android:title="@string/general" />
+                <item
+                    android:id="@+id/nav_cuenta"
+                    android:icon="@drawable/ic_account_circle"
+                    android:title="@string/mi_cuenta" />
+                <item
+                    android:id="@+id/nav_about"
+                    android:icon="@drawable/ic_help"
+                    android:title="@string/acerca_de" />
+                <item
+                    android:id="@+id/nav_salir"
+                    android:icon="@drawable/ic_logout"
+                    android:title="@string/cerrar_sesi_n" />
+            </group>
+        </menu>
+    </item>
+
+</menu>
