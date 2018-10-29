@@ -1,6 +1,9 @@
 package com.comfycraft.mybudget;
 
-public class PeriodosModel {
+import java.sql.Array;
+import java.util.ArrayList;
+
+public class PeriodosModel{
     public String fechaIni;
     public String fechaFin;
     public String fondos;
