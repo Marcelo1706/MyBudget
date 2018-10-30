@@ -24,6 +24,16 @@ public class Crud {
         return cursor;
     }
 
+    public long Update(String tabla, String[] campos, String[] valores, String condicion) {
+        ContentValues registro = new ContentValues();
+        for(int i = 0;i<campos.length;i++){
+            registro.put(campos[i],valores[i]);
+        }
+        long valor = baseDatos.update(tabla,registro,condicion,null);
+        baseDatos.close();
+        return valor;
+    }
+
     public long Insert(String tabla, String[] campos, String[] valores) {
         ContentValues registro = new ContentValues();
 
@@ -31,6 +41,12 @@ public class Crud {
             registro.put(campos[i],valores[i]);
         }
         long valor =  baseDatos.insert(tabla,null,registro);
+        baseDatos.close();
+        return valor;
+    }
+
+    public long Delete(String tabla, String condicion) {
+        long valor = baseDatos.delete(tabla,condicion,null);
         baseDatos.close();
         return valor;
     }

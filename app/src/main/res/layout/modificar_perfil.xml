@@ -33,19 +33,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/imgPerfil"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/user" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cambiar Foto de Perfil"
+                    android:text="Actualizar Mis Datos"
                     android:textAlignment="center"
                     android:textColor="@android:color/background_light"
                     android:textSize="18sp" />
@@ -123,7 +117,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/enviar_datos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"

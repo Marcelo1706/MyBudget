@@ -77,13 +77,36 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/textView23"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/nombres_des"
+                android:text="@string/nombres_joaquin"
                 android:textColor="@android:color/background_light"
-                android:textSize="18sp" />
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nombre_cely"
+                android:textColor="@android:color/background_light"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nombre_marcelo"
+                android:textColor="@android:color/background_light"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView45"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nombre_os"
+                android:textColor="@android:color/background_light"
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 

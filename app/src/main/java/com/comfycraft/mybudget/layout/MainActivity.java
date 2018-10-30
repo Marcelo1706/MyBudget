@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.comfycraft.mybudget.R;
-import com.comfycraft.mybudget.fragments.AjustesFragment;
 import com.comfycraft.mybudget.fragments.FondosFragment;
 import com.comfycraft.mybudget.fragments.GastosInicialFragment;
 import com.comfycraft.mybudget.fragments.PagosInicialFragment;
@@ -85,10 +84,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_cuenta:
                 Intent cuenta = new Intent (MainActivity.this,ModificarPerfil.class);
                 startActivity(cuenta);
-                break;
-            case R.id.nav_ajustes:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new AjustesFragment()).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
                 break;
             case R.id.nav_about:
                 Intent help = new Intent(MainActivity.this,AcercaDe.class);

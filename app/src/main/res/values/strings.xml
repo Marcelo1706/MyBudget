@@ -14,7 +14,10 @@
     <string name="nombre_de_usuario">Nombre de Usuario</string>
     <string name="versi_n">Versión:</string>
     <string name="desarrolladores">Desarrolladores:</string>
-    <string name="nombres_des">• Joaquín Antonio Barrientos Pérez\n• Celina Claribel Carranza Cruz\n• José Marcelo Hernández Cerritos\n• Oswaldo Alfredo Aguilar Ortíz</string>
+    <string name="nombres_joaquin">• Joaquín Antonio Barrientos Pérez</string>
+    <string name="nombre_cely">• Celina Claribel Carranza Cruz</string>
+    <string name="nombre_marcelo">• José Marcelo Hernández Cerritos</string>
+    <string name="nombre_os">• Oswaldo Alfredo Aguilar Ortíz</string>
     <string name="salir_de_la_aplicaci_n">Salir de la Aplicación</string>
     <string name="action_settings">Settings</string>
     <string name="administrar_mybudget">Administrar MyBudget</string>
