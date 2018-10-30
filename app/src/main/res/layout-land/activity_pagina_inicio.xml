@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/PMS3285"
-    tools:context=".paginaInicio">
+    tools:context=".layout.paginaInicio">
 
     <LinearLayout
         android:id="@+id/lyt_logo"

@@ -13,10 +13,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".paginaInicio"
+            android:name=".layout.paginaInicio"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".splashScreen"
+            android:name=".layout.splashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,22 +25,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AgregarPerfil"
+            android:name=".layout.AgregarPerfil"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".ModificarPerfil"
+            android:name=".layout.ModificarPerfil"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".AcercaDe"
+            android:name=".layout.AcercaDe"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".layout.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Login"
+            android:name=".layout.Login"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".PeriodosLayout" />
-        <activity android:name=".NuevoPeriodo"/>
+        <activity android:name=".layout.PeriodosLayout" />
+        <activity android:name=".layout.NuevoPeriodo"/>
     </application>
 
 </manifest>
