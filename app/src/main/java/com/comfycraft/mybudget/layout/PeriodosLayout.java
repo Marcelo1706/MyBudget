@@ -105,7 +105,7 @@ public class PeriodosLayout extends AppCompatActivity {
                 //Acá se debe mandar a llamar el MainActivity y enviarle los datos del
                 //ListView
                 Intent mainActivity = new Intent(PeriodosLayout.this,MainActivity.class);
-                session.setIdPeriodo(ids_periodos[i]);
+                session.setIdPeriodo(ids_periodos[i-1]);
                 startActivity(mainActivity);
             }
         });

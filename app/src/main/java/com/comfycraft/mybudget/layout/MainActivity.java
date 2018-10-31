@@ -13,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.comfycraft.mybudget.R;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         password = session.getPassword();
         id_periodo = session.getIdPeriodo();
 
+
         //Recuperamos el índice enviado en la tabla
         //Mostrar toast con indice seleccionado
         Toast.makeText(this,"Id Periodo " + id_periodo,Toast.LENGTH_SHORT).show();
@@ -59,6 +62,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Poner el nombre del usuario en el nav_header
+        View headerView = navigationView.getHeaderView(0);
+        TextView userName = headerView.findViewById(R.id.tv_nombre_usuario);
+        String mensaje = "¡Bienvenido, "+nombre_usuario+"!";
+        userName.setText(mensaje);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);

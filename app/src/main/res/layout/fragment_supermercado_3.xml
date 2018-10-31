@@ -105,16 +105,6 @@
                 tools:layout_editor_absoluteX="98dp"
                 tools:layout_editor_absoluteY="311dp" />
 
-            <Button
-                android:id="@+id/importar_prods"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/PM3435"
-                android:text="Importar De Otra Lista"
-                android:textColor="@android:color/background_light"
-                tools:layout_editor_absoluteX="98dp"
-                tools:layout_editor_absoluteY="311dp" />
-
         </LinearLayout>
     </ScrollView>
 
