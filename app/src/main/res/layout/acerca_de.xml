@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="1.0.1"
+                    android:text="@string/_1_0_1"
                     android:textColor="@android:color/background_light"
                     android:textSize="18sp" />
 
@@ -109,11 +109,12 @@
         android:id="@+id/salir_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="#004d40"
+        android:onClick="salir"
         android:text="@string/salir_de_la_aplicaci_n"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
