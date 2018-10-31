@@ -64,8 +64,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_edittext_states"
-                    android:inputType="textPersonName"
+                    android:inputType="text"
                     android:padding="5dip"
+                    android:maxLength="20"
                     android:singleLine="true" />
 
                 <TextView
@@ -83,6 +84,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_edittext_states"
                     android:importantForAutofill="no"
+                    android:maxLength="20"
                     android:inputType="textPassword"
                     android:padding="5dip" />
 
@@ -101,11 +103,12 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_edittext_states"
                     android:importantForAutofill="no"
+                    android:maxLength="20"
                     android:inputType="textPassword"
                     android:padding="5dip" />
 
                 <CheckBox
-                    android:id="@+id/checkBox"
+                    android:id="@+id/chkTerm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"

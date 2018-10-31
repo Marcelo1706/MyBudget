@@ -21,9 +21,9 @@ public class PagosInicialFragment extends Fragment {
     //Variable de sesion
     private Sesiones session;
     //Obtener los datos de la sesión
-    private String id_usuario = session.getUserId();
-    private String nombre_usuario = session.getUserId();
-    private String password = session.getPassword();
+    private String id_usuario;
+    private String nombre_usuario;
+    private String password;
 
     TextView tituloPagos, mensajePagos,labelPagos, aviso;
     ListView listPagos;
@@ -38,6 +38,11 @@ public class PagosInicialFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_pagos_inicial, container, false);
 
+        //Inicializar variable de sesion
+        session = new Sesiones(getActivity().getApplicationContext());
+        id_usuario = session.getUserId();
+        nombre_usuario = session.getUserId();
+        password = session.getPassword();
         //Acá irá una condición que permitirá mostrar el mensaje de los pagos o no
         tituloPagos = view.findViewById(R.id.titulo_pagos_inicial);
         mensajePagos = view.findViewById(R.id.mensaje_pagos_inicial);

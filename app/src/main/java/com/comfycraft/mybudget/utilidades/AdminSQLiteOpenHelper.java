@@ -13,16 +13,10 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase BaseDeDatos) {
-        //TABLA AJUSTES
-        BaseDeDatos.execSQL("create table ajustes(" +
-                "nombre_Ajuste text primary key," +
-                "estado text not null)");
-
         //TABLA USUARIOS
         BaseDeDatos.execSQL("create table usuarios(" +
                 "id_usuario integer primary key autoincrement," +
                 "nombre_usuario text not null," +
-                "correo text not null," +
                 "clave text not null)");
 
         //TABLA PERIODOS
@@ -73,18 +67,11 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase BaseDeDatos, int i, int i1) {
-        //TABLA AJUSTES
-        BaseDeDatos.execSQL("drop table if exists ajustes");
-        BaseDeDatos.execSQL("create table ajustes(" +
-                "nombre_Ajuste text primary key," +
-                "estado text not null)");
-
         //TABLA USUARIOS
         BaseDeDatos.execSQL("drop table if exists usuarios");
         BaseDeDatos.execSQL("create table usuarios(" +
                 "id_usuario integer primary key autoincrement," +
                 "nombre_usuario text not null," +
-                "correo text not null," +
                 "clave text not null)");
 
         //TABLA PERIODOS

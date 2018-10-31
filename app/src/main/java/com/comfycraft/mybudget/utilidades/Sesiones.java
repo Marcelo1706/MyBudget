@@ -15,27 +15,27 @@ public class Sesiones {
 
     //Setters
     public void setUserId(String userId){
-        prefs.edit().putString("id_usuario",userId).apply();
+        this.prefs.edit().putString("id_usuario",userId).apply();
     }
 
     public void setUserName(String usuario) {
-        prefs.edit().putString("nombre_usuario",usuario).apply();
+        this.prefs.edit().putString("nombre_usuario",usuario).apply();
     }
 
     public void setPassword(String password) {
-        prefs.edit().putString("password",password).apply();
+        this.prefs.edit().putString("password",password).apply();
     }
 
     //Getters
     public String getUserId() {
-        return prefs.getString("id_usuario","");
+        return this.prefs.getString("id_usuario","");
     }
 
     public String getUserName() {
-        return prefs.getString("nombre_usuario","");
+        return this.prefs.getString("nombre_usuario","");
     }
 
     public String getPassword() {
-        return prefs.getString("password","");
+        return this.prefs.getString("password","");
     }
 }

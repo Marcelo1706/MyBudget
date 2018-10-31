@@ -18,9 +18,9 @@ public class FondosFragment extends Fragment {
     //Variable de sesion
     private Sesiones session;
     //Obtener los datos de la sesión
-    private String id_usuario = session.getUserId();
-    private String nombre_usuario = session.getUserId();
-    private String password = session.getPassword();
+    private String id_usuario;
+    private String nombre_usuario;
+    private String password;
 
     TextView tituloFondos, mensajeFondos,labelFondos, aviso;
     EditText etfondos;
@@ -34,6 +34,12 @@ public class FondosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_fondos, container, false);
+
+        //Inicializar variable de sesion
+        session = new Sesiones(getActivity().getApplicationContext());
+        id_usuario = session.getUserId();
+        nombre_usuario = session.getUserId();
+        password = session.getPassword();
 
         //Acá irá una condición que permitirá mostrar el mensaje de los fondos o no
         tituloFondos = view.findViewById(R.id.titulofondos);

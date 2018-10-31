@@ -18,9 +18,9 @@ public class NuevoPeriodo extends AppCompatActivity {
     //Variable de sesion
     private Sesiones session;
     //Obtener los datos de la sesión
-    private String id_usuario = session.getUserId();
-    private String nombre_usuario = session.getUserId();
-    private String password = session.getPassword();
+    private String id_usuario;
+    private String nombre_usuario;
+    private String password;
 
     EditText fechaini, fechafin, montoInicial;
     Button btnNuevoPeriodo;
@@ -29,6 +29,12 @@ public class NuevoPeriodo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nuevo_periodo);
+
+        //Inicializar variable de sesion
+        session = new Sesiones(getApplicationContext());
+        id_usuario = session.getUserId();
+        nombre_usuario = session.getUserId();
+        password = session.getPassword();
 
         //Cambiar color de la Action Bar
         ActionBar bar = getSupportActionBar();

@@ -23,9 +23,9 @@ public class PeriodosLayout extends AppCompatActivity {
     //Variable de sesion
     private Sesiones session;
     //Obtener los datos de la sesión
-    private String id_usuario = session.getUserId();
-    private String nombre_usuario = session.getUserId();
-    private String password = session.getPassword();
+    private String id_usuario;
+    private String nombre_usuario;
+    private String password;
 
     private ListView lstPeriodos;
 
@@ -41,6 +41,12 @@ public class PeriodosLayout extends AppCompatActivity {
                 startActivity(intento);
             }
         });
+
+        //Inicializar variable de sesion
+        session = new Sesiones(getApplicationContext());
+        id_usuario = session.getUserId();
+        nombre_usuario = session.getUserId();
+        password = session.getPassword();
 
         //Cambiar color de la Action Bar
         ActionBar bar = getSupportActionBar();

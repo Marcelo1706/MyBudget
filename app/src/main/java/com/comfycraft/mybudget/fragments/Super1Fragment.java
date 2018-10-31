@@ -21,15 +21,21 @@ public class Super1Fragment extends Fragment {
     //Variable de sesion
     private Sesiones session;
     //Obtener los datos de la sesión
-    private String id_usuario = session.getUserId();
-    private String nombre_usuario = session.getUserId();
-    private String password = session.getPassword();
+    private String id_usuario;
+    private String nombre_usuario;
+    private String password;
 
     ListView lstsuper;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //Inicializar variable de sesion
+        session = new Sesiones(getActivity().getApplicationContext());
+        id_usuario = session.getUserId();
+        nombre_usuario = session.getUserId();
+        password = session.getPassword();
+
         View view =  inflater.inflate(R.layout.fragment_supermercado_1, container, false);
         Button btnNuevaLista = view.findViewById(R.id.nv_lista_super);
         btnNuevaLista.setOnClickListener(new View.OnClickListener() {

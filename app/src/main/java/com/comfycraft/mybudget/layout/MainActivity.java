@@ -28,9 +28,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //Variable de sesion
     private Sesiones session;
     //Obtener los datos de la sesión
-    private String id_usuario = session.getUserId();
-    private String nombre_usuario = session.getUserId();
-    private String password = session.getPassword();
+    private String id_usuario;
+    private String nombre_usuario;
+    private String password;
+
     private DrawerLayout drawer;
 
 
@@ -38,6 +39,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Inicializar variable de sesion
+        session = new Sesiones(getApplicationContext());
+        id_usuario = session.getUserId();
+        nombre_usuario = session.getUserId();
+        password = session.getPassword();
 
         //Recuperamos el índice enviado en la tabla
         Bundle datos_intent = getIntent().getExtras();

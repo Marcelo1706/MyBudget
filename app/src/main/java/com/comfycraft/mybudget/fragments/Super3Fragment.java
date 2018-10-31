@@ -19,13 +19,19 @@ public class Super3Fragment extends Fragment {
     //Variable de sesion
     private Sesiones session;
     //Obtener los datos de la sesión
-    private String id_usuario = session.getUserId();
-    private String nombre_usuario = session.getUserId();
-    private String password = session.getPassword();
+    private String id_usuario;
+    private String nombre_usuario;
+    private String password;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //Inicializar variable de sesion
+        session = new Sesiones(getActivity().getApplicationContext());
+        id_usuario = session.getUserId();
+        nombre_usuario = session.getUserId();
+        password = session.getPassword();
+
         View view = inflater.inflate(R.layout.fragment_supermercado_3, container, false);
         final ProductosModel productosModel[] = new ProductosModel[] {
                 new ProductosModel("Producto 1",Float.parseFloat("1.99"),10),
