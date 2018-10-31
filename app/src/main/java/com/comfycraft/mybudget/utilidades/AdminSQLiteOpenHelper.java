@@ -55,7 +55,8 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
                 "id_producto integer primary key autoincrement," +
                 "nombre text not null," +
                 "precio_unitario real not null," +
-                "cantidad double not null)");
+                "id_lista integer not null," +
+                "cantidad integer not null)");
 
         //TABLA NOTIFICACIONES
         BaseDeDatos.execSQL("create table notificaciones(" +
@@ -115,7 +116,8 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
                 "id_producto integer primary key autoincrement," +
                 "nombre text not null," +
                 "precio_unitario real not null," +
-                "cantidad double not null)");
+                "id_lista integer not null," +
+                "cantidad integer not null)");
 
         //TABLA NOTIFICACIONES
         BaseDeDatos.execSQL("drop table if exists notificaciones");

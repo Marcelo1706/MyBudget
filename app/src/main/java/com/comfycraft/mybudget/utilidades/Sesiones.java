@@ -30,6 +30,19 @@ public class Sesiones {
         this.prefs.edit().putString("id_periodo",id_periodo).apply();
     }
 
+    public void setIdPago(String id_pago) {
+        this.prefs.edit().putString("id_pago",id_pago).apply();
+    }
+
+    public void setIdGasto(String id_gasto) {
+        this.prefs.edit().putString("id_gasto",id_gasto).apply();
+    }
+
+
+    public void setIdLista(String id_lista) {
+        this.prefs.edit().putString("id_lista",id_lista).apply();
+    }
+
     //Getters
     public String getUserId() {
         return this.prefs.getString("id_usuario","");
@@ -46,4 +59,10 @@ public class Sesiones {
     public String getIdPeriodo() {
         return this.prefs.getString("id_periodo","");
     }
+
+    public String getIdPago() { return this.prefs.getString("id_pago",""); }
+
+    public String getIdGasto() { return this.prefs.getString("id_gasto",""); }
+
+    public String getIdLista() { return this.prefs.getString("id_lista",""); }
 }
