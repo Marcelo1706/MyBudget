@@ -11,8 +11,16 @@ import android.widget.Toast;
 
 import com.comfycraft.mybudget.R;
 import com.comfycraft.mybudget.utilidades.Crud;
+import com.comfycraft.mybudget.utilidades.Sesiones;
 
 public class NuevoPeriodo extends AppCompatActivity {
+
+    //Variable de sesion
+    private Sesiones session;
+    //Obtener los datos de la sesión
+    private String id_usuario = session.getUserId();
+    private String nombre_usuario = session.getUserId();
+    private String password = session.getPassword();
 
     EditText fechaini, fechafin, montoInicial;
     Button btnNuevoPeriodo;
@@ -49,8 +57,9 @@ public class NuevoPeriodo extends AppCompatActivity {
         long valor = prueba.Insert("periodos",campos,valores);
 
         if(valor > 0)
-            Toast.makeText(this, "Si funciona :v "+valor,Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(this, "No funciona :'v "+valor,Toast.LENGTH_SHORT).show();
+        {
+            Toast.makeText(this, "Se ha creado el período correctamente",Toast.LENGTH_SHORT).show();
+
+        }
     }
 }

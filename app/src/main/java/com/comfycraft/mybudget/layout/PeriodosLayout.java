@@ -16,8 +16,16 @@ import com.comfycraft.mybudget.R;
 import com.comfycraft.mybudget.adapters.PeriodosAdapter;
 import com.comfycraft.mybudget.modelos.PeriodosModel;
 import com.comfycraft.mybudget.utilidades.Crud;
+import com.comfycraft.mybudget.utilidades.Sesiones;
 
 public class PeriodosLayout extends AppCompatActivity {
+
+    //Variable de sesion
+    private Sesiones session;
+    //Obtener los datos de la sesión
+    private String id_usuario = session.getUserId();
+    private String nombre_usuario = session.getUserId();
+    private String password = session.getPassword();
 
     private ListView lstPeriodos;
 

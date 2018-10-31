@@ -21,10 +21,18 @@ import com.comfycraft.mybudget.fragments.GastosInicialFragment;
 import com.comfycraft.mybudget.fragments.PagosInicialFragment;
 import com.comfycraft.mybudget.fragments.ResumenFragment;
 import com.comfycraft.mybudget.fragments.Super1Fragment;
+import com.comfycraft.mybudget.utilidades.Sesiones;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    //Variable de sesion
+    private Sesiones session;
+    //Obtener los datos de la sesión
+    private String id_usuario = session.getUserId();
+    private String nombre_usuario = session.getUserId();
+    private String password = session.getPassword();
     private DrawerLayout drawer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

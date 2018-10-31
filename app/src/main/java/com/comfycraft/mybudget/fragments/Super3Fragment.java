@@ -12,8 +12,16 @@ import android.widget.ListView;
 import com.comfycraft.mybudget.adapters.ProductosAdapter;
 import com.comfycraft.mybudget.R;
 import com.comfycraft.mybudget.modelos.ProductosModel;
+import com.comfycraft.mybudget.utilidades.Sesiones;
 
 public class Super3Fragment extends Fragment {
+
+    //Variable de sesion
+    private Sesiones session;
+    //Obtener los datos de la sesión
+    private String id_usuario = session.getUserId();
+    private String nombre_usuario = session.getUserId();
+    private String password = session.getPassword();
 
     @Nullable
     @Override

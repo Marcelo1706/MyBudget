@@ -10,8 +10,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.comfycraft.mybudget.R;
+import com.comfycraft.mybudget.utilidades.Sesiones;
 
 public class Super2Fragment extends Fragment {
+
+    //Variable de sesion
+    private Sesiones session;
+    //Obtener los datos de la sesión
+    private String id_usuario = session.getUserId();
+    private String nombre_usuario = session.getUserId();
+    private String password = session.getPassword();
 
     @Nullable
     @Override

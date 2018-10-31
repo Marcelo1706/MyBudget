@@ -14,8 +14,16 @@ import android.widget.TextView;
 import com.comfycraft.mybudget.adapters.PagosInicialAdapter;
 import com.comfycraft.mybudget.R;
 import com.comfycraft.mybudget.modelos.PagosInicialModel;
+import com.comfycraft.mybudget.utilidades.Sesiones;
 
 public class PagosInicialFragment extends Fragment {
+
+    //Variable de sesion
+    private Sesiones session;
+    //Obtener los datos de la sesión
+    private String id_usuario = session.getUserId();
+    private String nombre_usuario = session.getUserId();
+    private String password = session.getPassword();
 
     TextView tituloPagos, mensajePagos,labelPagos, aviso;
     ListView listPagos;

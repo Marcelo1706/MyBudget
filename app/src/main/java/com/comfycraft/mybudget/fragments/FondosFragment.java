@@ -11,8 +11,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.comfycraft.mybudget.R;
+import com.comfycraft.mybudget.utilidades.Sesiones;
 
 public class FondosFragment extends Fragment {
+
+    //Variable de sesion
+    private Sesiones session;
+    //Obtener los datos de la sesión
+    private String id_usuario = session.getUserId();
+    private String nombre_usuario = session.getUserId();
+    private String password = session.getPassword();
 
     TextView tituloFondos, mensajeFondos,labelFondos, aviso;
     EditText etfondos;
