@@ -1,5 +1,7 @@
 package com.comfycraft.mybudget.fragments;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,8 +11,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.comfycraft.mybudget.R;
+import com.comfycraft.mybudget.layout.MainActivity;
+import com.comfycraft.mybudget.utilidades.Crud;
 import com.comfycraft.mybudget.utilidades.Sesiones;
 
 public class FondosFragment extends Fragment {
@@ -23,18 +28,16 @@ public class FondosFragment extends Fragment {
     private String password;
     private String id_periodo;
 
-    TextView tituloFondos, mensajeFondos,labelFondos, aviso;
+    public View view;
+
     EditText etfondos;
     Button guardar;
 
-    //Condición ficticia a modo de prueba, se debe reemplazar por la condición en la que se
-    //busca si hay un período existente en la fecha actual
-    Boolean condicion = true;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_fondos, container, false);
+        view =  inflater.inflate(R.layout.fragment_fondos, container, false);
 
         //Inicializar variable de sesion
         session = new Sesiones(getActivity().getApplicationContext());
@@ -43,24 +46,50 @@ public class FondosFragment extends Fragment {
         password = session.getPassword();
         id_periodo = session.getIdPeriodo();
 
-        //Acá irá una condición que permitirá mostrar el mensaje de los fondos o no
-        tituloFondos = view.findViewById(R.id.titulofondos);
-        mensajeFondos = view.findViewById(R.id.mensajefondos);
-        labelFondos = view.findViewById(R.id.labelfondos);
-        aviso = view.findViewById(R.id.aviso);
+        //Instanciar Controles
         etfondos = view.findViewById(R.id.fondosPeriodo);
-        guardar = view.findViewById(R.id.btnGuardarFondos);
 
-        if(!condicion)
-        {
-            tituloFondos.setVisibility(View.INVISIBLE);
-            mensajeFondos.setVisibility(View.INVISIBLE);
-            labelFondos.setVisibility(View.INVISIBLE);
-            etfondos.setVisibility(View.INVISIBLE);
-            guardar.setVisibility(View.INVISIBLE);
-            aviso.setVisibility(View.VISIBLE);
+        //Poner los fondos en el ET
+        Crud crud = new Crud(getActivity().getApplicationContext());
+        Cursor select  = crud.Select("periodos","id_periodo='"+id_periodo+"'");
+
+        if(select.getCount() > 0){
+            if(select.moveToFirst()){
+                etfondos.setText(select.getString(select.getColumnIndex("monto_inicial")));
+            }
         }
 
+        guardar = view.findViewById(R.id.btnGuardarFondos);
+
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actualizarFondos(view);
+            }
+        });
+
         return view;
+    }
+
+    public void actualizarFondos(View view){
+        etfondos = view.findViewById(R.id.fondosPeriodo);
+        String fondos = etfondos.getText().toString();
+
+        //Validacion
+        if(fondos.isEmpty() || Float.parseFloat(fondos) == 0){
+            Toast.makeText(getActivity().getApplicationContext(),"Debe ingresar un valor númerico mayor que 0",Toast.LENGTH_SHORT).show();
+        } else {
+            Crud update = new Crud(getActivity().getApplicationContext());
+            String[] campos = {"monto_inicial"};
+            String[] valores = {fondos};
+
+            long resultado = update.Update("periodos",campos,valores,"id_periodo='"+id_periodo+"'");
+
+            if(resultado > 0){
+                Toast.makeText(getActivity().getApplicationContext(),"Fondos Actualizados",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(),MainActivity.class);
+                startActivity(intent);
+            }
+        }
     }
 }

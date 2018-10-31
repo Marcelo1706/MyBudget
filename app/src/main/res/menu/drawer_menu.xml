@@ -15,7 +15,7 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/lstPeríodos"
-                    android:icon="@drawable/ic_assignment"
+                    android:icon="@drawable/ic_date_range"
                     android:title="@string/periodos" />
                 <item
                     android:id="@+id/nav_fondos"
