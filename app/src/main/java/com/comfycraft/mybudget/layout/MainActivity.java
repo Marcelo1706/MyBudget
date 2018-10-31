@@ -23,9 +23,10 @@ import com.comfycraft.mybudget.fragments.GastosInicialFragment;
 import com.comfycraft.mybudget.fragments.PagosInicialFragment;
 import com.comfycraft.mybudget.fragments.ResumenFragment;
 import com.comfycraft.mybudget.fragments.Super1Fragment;
+import com.comfycraft.mybudget.utilidades.CerrarAppDialog;
 import com.comfycraft.mybudget.utilidades.Sesiones;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //Variable de sesion
     private Sesiones session;
@@ -50,11 +51,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         password = session.getPassword();
         id_periodo = session.getIdPeriodo();
 
-
-        //Recuperamos el índice enviado en la tabla
-        //Mostrar toast con indice seleccionado
-        Toast.makeText(this,"Id Periodo " + id_periodo,Toast.LENGTH_SHORT).show();
-
         //Mostramos el Toolbar personalizado
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -66,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Poner el nombre del usuario en el nav_header
         View headerView = navigationView.getHeaderView(0);
         TextView userName = headerView.findViewById(R.id.tv_nombre_usuario);
-        String mensaje = "¡Bienvenido, "+nombre_usuario+"!";
+        String mensaje = "¡Bienvenido, " + nombre_usuario + "!";
         userName.setText(mensaje);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
@@ -85,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.lstPeríodos:
-                Intent inicio = new Intent(MainActivity.this,PeriodosLayout.class);
+                Intent inicio = new Intent(MainActivity.this, PeriodosLayout.class);
                 startActivity(inicio);
                 break;
             case R.id.nav_resumen:
@@ -109,15 +105,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new Super1Fragment()).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
                 break;
             case R.id.nav_cuenta:
-                Intent cuenta = new Intent (MainActivity.this,ModificarPerfil.class);
+                Intent cuenta = new Intent(MainActivity.this, ModificarPerfil.class);
                 startActivity(cuenta);
                 break;
             case R.id.nav_about:
-                Intent help = new Intent(MainActivity.this,AcercaDe.class);
+                Intent help = new Intent(MainActivity.this, AcercaDe.class);
                 startActivity(help);
                 break;
             case R.id.nav_salir:
-                    mostrarDialogoSalir();
+                mostrarDialogoSalir();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
@@ -131,8 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (doubleBackToExitPressedOnce) {
             mostrarDialogoSalir();
             return;
-        }
-        else {
+        } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new ResumenFragment()).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
         }
@@ -143,13 +138,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
             }
         }, 2000);
     }
 
     public void mostrarDialogoSalir() {
         DialogFragment dialogo = new CerrarAppDialog();
-        dialogo.show(getSupportFragmentManager(),"salirapp");
+        dialogo.show(getSupportFragmentManager(), "salirapp");
     }
 }

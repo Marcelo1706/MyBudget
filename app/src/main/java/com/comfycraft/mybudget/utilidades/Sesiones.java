@@ -43,6 +43,18 @@ public class Sesiones {
         this.prefs.edit().putString("id_lista",id_lista).apply();
     }
 
+    public void setTablaEliminar(String tabla) {
+        this.prefs.edit().putString("tabla",tabla).apply();
+    }
+
+    public void setIdEliminar(String id) {
+        this.prefs.edit().putString("id",id).apply();
+    }
+
+    public void setCampoCondicion(String campo) {
+        this.prefs.edit().putString("campoCondicion",campo).apply();
+    }
+
     //Getters
     public String getUserId() {
         return this.prefs.getString("id_usuario","");
@@ -65,4 +77,10 @@ public class Sesiones {
     public String getIdGasto() { return this.prefs.getString("id_gasto",""); }
 
     public String getIdLista() { return this.prefs.getString("id_lista",""); }
+
+    public String getTablaEliminar() { return this.prefs.getString("tabla",""); }
+
+    public String getIdEliminar() { return this.prefs.getString("id",""); }
+
+    public String getCampoCondicion() { return this.prefs.getString("campoCondicion",""); }
 }

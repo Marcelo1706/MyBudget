@@ -3,12 +3,14 @@ package com.comfycraft.mybudget.fragments;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -18,6 +20,7 @@ import com.comfycraft.mybudget.adapters.ProductosAdapter;
 import com.comfycraft.mybudget.R;
 import com.comfycraft.mybudget.modelos.ProductosModel;
 import com.comfycraft.mybudget.utilidades.Crud;
+import com.comfycraft.mybudget.utilidades.EliminarDialog;
 import com.comfycraft.mybudget.utilidades.Sesiones;
 
 public class Super3Fragment extends Fragment {
@@ -58,6 +61,7 @@ public class Super3Fragment extends Fragment {
         Cursor select = crud.Select("productosLista","id_lista='"+id_lista+"'");
         int valor = select.getCount();
 
+        ListView lstProds = view.findViewById(R.id.list_productos);
         int i = 0;
         if(valor > 0){
             if(select.moveToFirst()){
@@ -70,13 +74,14 @@ public class Super3Fragment extends Fragment {
                       Float.parseFloat(select.getString(select.getColumnIndex("precio_unitario"))),
                       Integer.parseInt(select.getString(select.getColumnIndex("cantidad")))
                     );
+                    i++;
                 }while(select.moveToNext());
             }
-        }
+        }else
+            lstProds.setVisibility(View.INVISIBLE);
 
         ProductosAdapter adapter = new ProductosAdapter(getContext(),R.layout.row_productos_super,productosModel);
 
-        ListView lstProds = view.findViewById(R.id.list_productos);
 
         View header = getLayoutInflater().inflate(R.layout.productos_super_header,null);
         lstProds.addHeaderView(header,null,false);
@@ -93,6 +98,12 @@ public class Super3Fragment extends Fragment {
             }
         });
 
+        lstProds.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                mostrarDialogoEliminar(ids_productos[i - 1]);
+            }
+        });
         agregar_prod = view.findViewById(R.id.agregar_prod);
 
         agregar_prod.setOnClickListener(new View.OnClickListener() {
@@ -135,5 +146,13 @@ public class Super3Fragment extends Fragment {
                 Toast.makeText(getContext(),"No se pudo agregar el producto",Toast.LENGTH_SHORT).show();
 
         }
+    }
+
+    public void mostrarDialogoEliminar(String item) {
+        session.setIdEliminar(item);
+        session.setCampoCondicion("id_producto");
+        session.setTablaEliminar("productosLista");
+        DialogFragment dialogo = new EliminarDialog();
+        dialogo.show(getFragmentManager(),"eliminarDialog");
     }
 }

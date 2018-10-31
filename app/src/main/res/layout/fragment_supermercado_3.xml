@@ -93,18 +93,6 @@
 
             </ListView>
 
-            <Button
-                android:id="@+id/guardar_lista"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/PM3435"
-                android:text="Guardar Cambios"
-                android:textColor="@android:color/background_light"
-                tools:layout_editor_absoluteX="98dp"
-                tools:layout_editor_absoluteY="311dp" />
-
         </LinearLayout>
     </ScrollView>
 

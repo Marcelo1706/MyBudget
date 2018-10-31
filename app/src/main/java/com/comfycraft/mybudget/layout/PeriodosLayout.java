@@ -3,9 +3,13 @@ package com.comfycraft.mybudget.layout;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -16,6 +20,7 @@ import com.comfycraft.mybudget.R;
 import com.comfycraft.mybudget.adapters.PeriodosAdapter;
 import com.comfycraft.mybudget.modelos.PeriodosModel;
 import com.comfycraft.mybudget.utilidades.Crud;
+import com.comfycraft.mybudget.utilidades.EliminarDialog;
 import com.comfycraft.mybudget.utilidades.Sesiones;
 
 public class PeriodosLayout extends AppCompatActivity {
@@ -67,6 +72,9 @@ public class PeriodosLayout extends AppCompatActivity {
                 new PeriodosModel("No","Hay","Datos")
         };
 
+        //Identificamos el layout
+        lstPeriodos = findViewById(R.id.lstPeríodos);
+
         int i = 0;
         if(valores > 0) {
             if(prueba.moveToFirst())
@@ -80,14 +88,13 @@ public class PeriodosLayout extends AppCompatActivity {
                 }
                 while(prueba.moveToNext());
             }
-        }
+        } else
+            lstPeriodos.setVisibility(View.INVISIBLE);
 
         //Luego de tener los datos, procedemos a llenar el adapter, mandando a llamar
         //el layout que se diseñó para este listview, con los datos creados anteriormente
         PeriodosAdapter adapter = new PeriodosAdapter(this,R.layout.row_list_periodos,datos_periodo);
 
-        //Identificamos el layout
-        lstPeriodos = findViewById(R.id.lstPeríodos);
 
         //Agregamos el header al listview, también diseñado en los recursos
         View header = getLayoutInflater().inflate(R.layout.list_periodos_header,null);
@@ -108,5 +115,36 @@ public class PeriodosLayout extends AppCompatActivity {
             }
         });
 
+        registerForContextMenu(lstPeriodos);
+
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu,v,menuInfo);
+
+        MenuInflater inflater = getMenuInflater();
+
+        AdapterView.AdapterContextMenuInfo info =
+                (AdapterView.AdapterContextMenuInfo) menuInfo;
+        menu.setHeaderTitle("Acciones");
+        inflater.inflate(R.menu.menu_ctx,menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info =
+                (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        mostrarDialogoEliminar(ids_periodos[info.position-1]);
+        return true;
+    }
+
+    public void mostrarDialogoEliminar(String item) {
+        session.setTablaEliminar("periodos");
+        session.setIdEliminar(item);
+        session.setCampoCondicion("id_periodo");
+        DialogFragment dialogo = new EliminarDialog();
+        dialogo.show(getSupportFragmentManager(),"eliminarDialog");
     }
 }

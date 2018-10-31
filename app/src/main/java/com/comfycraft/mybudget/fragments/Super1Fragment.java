@@ -3,9 +3,13 @@ package com.comfycraft.mybudget.fragments;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,6 +21,7 @@ import com.comfycraft.mybudget.R;
 import com.comfycraft.mybudget.adapters.SuperAdapter;
 import com.comfycraft.mybudget.modelos.SuperModel;
 import com.comfycraft.mybudget.utilidades.Crud;
+import com.comfycraft.mybudget.utilidades.EliminarDialog;
 import com.comfycraft.mybudget.utilidades.Sesiones;
 
 import java.text.NumberFormat;
@@ -71,7 +76,10 @@ public class Super1Fragment extends Fragment {
         };
 
         Float totalGeneral = Float.valueOf(0);
+
         int i = 0;
+        lstsuper = view.findViewById(R.id.listas_supermercado);
+
         if(valores >0){
             if(listas.moveToFirst()){
                 ids_listas = new String[valores];
@@ -96,11 +104,11 @@ public class Super1Fragment extends Fragment {
                 }while(listas.moveToNext());
             }
             ;
-        }
+        }else
+            lstsuper.setVisibility(View.INVISIBLE);
 
         SuperAdapter adapter = new SuperAdapter(getContext(),R.layout.row_lista_supermercado,superModel);
 
-        lstsuper = view.findViewById(R.id.listas_supermercado);
 
         View header = getLayoutInflater().inflate(R.layout.lista_supermercado_header,null);
         lstsuper.addHeaderView(header,null,false);
@@ -120,6 +128,35 @@ public class Super1Fragment extends Fragment {
                         .commit();
             }
         });
+        registerForContextMenu(lstsuper);
+
         return view;
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu,v,menuInfo);
+
+        MenuInflater inflater = getActivity().getMenuInflater();
+        AdapterView.AdapterContextMenuInfo info =
+                (AdapterView.AdapterContextMenuInfo) menuInfo;
+        menu.setHeaderTitle("Acciones");
+        inflater.inflate(R.menu.menu_ctx,menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info =
+                (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        mostrarDialogoEliminar(ids_listas[info.position-1]);
+        return true;
+    }
+
+    public void mostrarDialogoEliminar(String item) {
+        session.setTablaEliminar("listaSuper");
+        session.setIdEliminar(item);
+        session.setCampoCondicion("id_lista");
+        DialogFragment dialogo = new EliminarDialog();
+        dialogo.show(getFragmentManager(),"eliminarDialog");
     }
 }

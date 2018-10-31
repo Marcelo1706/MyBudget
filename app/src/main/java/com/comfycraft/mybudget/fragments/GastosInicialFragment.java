@@ -1,19 +1,23 @@
 package com.comfycraft.mybudget.fragments;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.comfycraft.mybudget.adapters.GastosInicialAdapter;
 import com.comfycraft.mybudget.R;
 import com.comfycraft.mybudget.modelos.GastosInicialModel;
+import com.comfycraft.mybudget.utilidades.Crud;
+import com.comfycraft.mybudget.utilidades.EliminarDialog;
 import com.comfycraft.mybudget.utilidades.Sesiones;
 
 public class GastosInicialFragment extends Fragment {
@@ -25,14 +29,12 @@ public class GastosInicialFragment extends Fragment {
     private String nombre_usuario;
     private String password;
     private String id_periodo;
+    private String item_eliminar;
 
-    TextView tituloPagos, mensajePagos,labelPagos, aviso;
+    private String[] ids_gastos;
+
     ListView listPagos;
     Button agregarPago;
-
-    //Condición ficticia a modo de prueba, se debe reemplazar por la condición en la que se
-    //busca si hay un período existente en la fecha actual
-    Boolean condicion = true;
 
     @Nullable
     @Override
@@ -46,23 +48,9 @@ public class GastosInicialFragment extends Fragment {
         password = session.getPassword();
         id_periodo = session.getIdPeriodo();
 
-        //Acá irá una condición que permitirá mostrar el mensaje de los pagos o no
-        tituloPagos = view.findViewById(R.id.titulo_pagos_inicial);
-        mensajePagos = view.findViewById(R.id.mensaje_pagos_inicial);
-        labelPagos = view.findViewById(R.id.titulo_agregar_pagos);
-        agregarPago = view.findViewById(R.id.boton_agregar_pago);
-        listPagos = view.findViewById(R.id.list_gastos_inicial);
-        aviso = view.findViewById(R.id.aviso_pagos_inicial);
 
-        if(!condicion)
-        {
-            tituloPagos.setVisibility(View.INVISIBLE);
-            mensajePagos.setVisibility(View.INVISIBLE);
-            labelPagos.setVisibility(View.INVISIBLE);
-            agregarPago.setVisibility(View.INVISIBLE);
-            listPagos.setVisibility(View.INVISIBLE);
-            aviso.setVisibility(View.VISIBLE);
-        }
+        listPagos = view.findViewById(R.id.list_gastos_inicial);
+        agregarPago = view.findViewById(R.id.boton_agregar_pago);
         agregarPago.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -75,14 +63,34 @@ public class GastosInicialFragment extends Fragment {
             }
         });
 
+        Crud crud = new Crud(getContext());
+        Cursor select = crud.Select("gastos","id_periodo='"+id_periodo+"'");
+        int valor = select.getCount();
+
+
 
         //Llenado experimental del ListView
-        final GastosInicialModel datos_gastos[] = new GastosInicialModel[] {
-                new GastosInicialModel("Gasto 1","$100.00"),
-                new GastosInicialModel("Gasto 2","$200.00"),
-                new GastosInicialModel("Gasto 3","$300.00"),
-                new GastosInicialModel("Gasto 4","$400.00")
+        GastosInicialModel datos_gastos[] = new GastosInicialModel[] {
+                new GastosInicialModel("Sin","Datos"),
         };
+
+        int i = 0;
+        if(valor > 0){
+            if(select.moveToFirst()){
+                datos_gastos = new GastosInicialModel[valor];
+                ids_gastos = new String[valor];
+                do{
+                    ids_gastos[i] = select.getString(select.getColumnIndex("id_gasto"));
+                    datos_gastos[i] = new GastosInicialModel(
+                            select.getString(select.getColumnIndex("nombre")),
+                            select.getString(select.getColumnIndex("monto"))
+                    );
+                    i++;
+                }while (select.moveToNext());
+            }
+        }
+        else
+            listPagos.setVisibility(View.INVISIBLE);
 
         GastosInicialAdapter adapter = new GastosInicialAdapter(getContext(),R.layout.row_list_gastos_inicial,datos_gastos);
 
@@ -90,6 +98,21 @@ public class GastosInicialFragment extends Fragment {
         listPagos.addHeaderView(header,null,false);
         listPagos.setAdapter(adapter);
 
+        listPagos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                mostrarDialogoEliminar(ids_gastos[i-1]);
+            }
+        });
+
         return view;
+    }
+
+    public void mostrarDialogoEliminar(String item) {
+        session.setIdEliminar(item);
+        session.setCampoCondicion("id_gasto");
+        session.setTablaEliminar("gastos");
+        DialogFragment dialogo = new EliminarDialog();
+        dialogo.show(getFragmentManager(),"eliminarDialog");
     }
 }

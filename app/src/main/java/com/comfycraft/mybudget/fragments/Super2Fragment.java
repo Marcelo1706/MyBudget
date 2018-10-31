@@ -65,25 +65,17 @@ public class Super2Fragment extends Fragment {
             Crud crud = new Crud(getContext());
             long resultado = crud.Insert("listaSuper",campos,valores);
             if(resultado > 0){
-                crud = new Crud(getContext());
-                resultado = crud.Insert("gastos",
-                        new String[] {"nombre","monto","id_periodo"},
-                        new String[] {nombre,"0",id_periodo}
-                );
-                if(resultado > 0) {
-                    Toast.makeText(getContext(),"Lista creada correctamente",Toast.LENGTH_SHORT).show();
-                    Fragment super1 = new Super1Fragment();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction
-                            .replace(R.id.fragment_container,super1)
-                            .addToBackStack(null)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .commit();
-                }else{
-                    Toast.makeText(getContext(),"Ocurrio un error",Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(getContext(),"Lista creada correctamente",Toast.LENGTH_SHORT).show();
+                Fragment super1 = new Super1Fragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction
+                        .replace(R.id.fragment_container,super1)
+                        .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
+            }else{
+                Toast.makeText(getContext(),"Ocurrio un error",Toast.LENGTH_SHORT).show();
             }
-
         }
     }
 }

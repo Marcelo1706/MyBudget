@@ -1,4 +1,4 @@
-package com.comfycraft.mybudget.layout;
+package com.comfycraft.mybudget.utilidades;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
