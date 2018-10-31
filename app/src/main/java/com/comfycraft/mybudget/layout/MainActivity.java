@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String id_usuario;
     private String nombre_usuario;
     private String password;
+    private String id_periodo;
 
     private DrawerLayout drawer;
 
@@ -43,15 +44,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Inicializar variable de sesion
         session = new Sesiones(getApplicationContext());
         id_usuario = session.getUserId();
-        nombre_usuario = session.getUserId();
+        nombre_usuario = session.getUserName();
         password = session.getPassword();
+        id_periodo = session.getIdPeriodo();
 
         //Recuperamos el índice enviado en la tabla
-        Bundle datos_intent = getIntent().getExtras();
-        int indice = datos_intent.getInt("indice");
-
         //Mostrar toast con indice seleccionado
-        Toast.makeText(this,"Item seleccionado " + String.valueOf(indice),Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Id Periodo " + id_periodo,Toast.LENGTH_SHORT).show();
 
         //Mostramos el Toolbar personalizado
         Toolbar toolbar = findViewById(R.id.toolbar);

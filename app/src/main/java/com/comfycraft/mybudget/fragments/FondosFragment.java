@@ -21,6 +21,7 @@ public class FondosFragment extends Fragment {
     private String id_usuario;
     private String nombre_usuario;
     private String password;
+    private String id_periodo;
 
     TextView tituloFondos, mensajeFondos,labelFondos, aviso;
     EditText etfondos;
@@ -38,8 +39,9 @@ public class FondosFragment extends Fragment {
         //Inicializar variable de sesion
         session = new Sesiones(getActivity().getApplicationContext());
         id_usuario = session.getUserId();
-        nombre_usuario = session.getUserId();
+        nombre_usuario = session.getUserName();
         password = session.getPassword();
+        id_periodo = session.getIdPeriodo();
 
         //Acá irá una condición que permitirá mostrar el mensaje de los fondos o no
         tituloFondos = view.findViewById(R.id.titulofondos);

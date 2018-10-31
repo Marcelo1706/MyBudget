@@ -24,6 +24,7 @@ public class Super1Fragment extends Fragment {
     private String id_usuario;
     private String nombre_usuario;
     private String password;
+    private String id_periodo;
 
     ListView lstsuper;
 
@@ -33,8 +34,9 @@ public class Super1Fragment extends Fragment {
         //Inicializar variable de sesion
         session = new Sesiones(getActivity().getApplicationContext());
         id_usuario = session.getUserId();
-        nombre_usuario = session.getUserId();
+        nombre_usuario = session.getUserName();
         password = session.getPassword();
+        id_periodo = session.getIdPeriodo();
 
         View view =  inflater.inflate(R.layout.fragment_supermercado_1, container, false);
         Button btnNuevaLista = view.findViewById(R.id.nv_lista_super);

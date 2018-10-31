@@ -18,6 +18,7 @@ public class AgregarGastosFragment extends Fragment {
     private String id_usuario;
     private String nombre_usuario;
     private String password;
+    private String id_periodo;
 
     @Nullable
     @Override
@@ -25,8 +26,9 @@ public class AgregarGastosFragment extends Fragment {
         //Inicializar variable de sesion
         session = new Sesiones(getActivity().getApplicationContext());
         id_usuario = session.getUserId();
-        nombre_usuario = session.getUserId();
+        nombre_usuario = session.getUserName();
         password = session.getPassword();
+        id_periodo = session.getIdPeriodo();
         return inflater.inflate(R.layout.fragment_agregar_gastos, container, false);
     }
 }

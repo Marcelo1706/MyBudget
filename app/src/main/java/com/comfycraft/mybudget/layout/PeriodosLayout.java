@@ -29,6 +29,8 @@ public class PeriodosLayout extends AppCompatActivity {
 
     private ListView lstPeriodos;
 
+    private String[] ids_periodos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +47,7 @@ public class PeriodosLayout extends AppCompatActivity {
         //Inicializar variable de sesion
         session = new Sesiones(getApplicationContext());
         id_usuario = session.getUserId();
-        nombre_usuario = session.getUserId();
+        nombre_usuario = session.getUserName();
         password = session.getPassword();
 
         //Cambiar color de la Action Bar
@@ -58,18 +60,21 @@ public class PeriodosLayout extends AppCompatActivity {
         //de llenar de acuerdo a una consulta a un archivo o base de datos
 
         Crud crud = new Crud(this);
-        Cursor prueba = crud.Select("periodos","");
+        Cursor prueba = crud.Select("periodos","id_usuario='"+id_usuario+"'");
         int valores = prueba.getCount();
 
         PeriodosModel datos_periodo[] = new PeriodosModel[] {
                 new PeriodosModel("No","Hay","Datos")
         };
+
         int i = 0;
         if(valores > 0) {
             if(prueba.moveToFirst())
             {
+                ids_periodos = new String[valores];
                 datos_periodo = new PeriodosModel[valores];
                 do{
+                    ids_periodos[i] = prueba.getString(prueba.getColumnIndex("id_periodo"));
                     datos_periodo[i] = new PeriodosModel(prueba.getString(1),prueba.getString(2),prueba.getString(4));
                     i++;
                 }
@@ -100,7 +105,7 @@ public class PeriodosLayout extends AppCompatActivity {
                 //Acá se debe mandar a llamar el MainActivity y enviarle los datos del
                 //ListView
                 Intent mainActivity = new Intent(PeriodosLayout.this,MainActivity.class);
-                mainActivity.putExtra("indice",i);
+                session.setIdPeriodo(ids_periodos[i]);
                 startActivity(mainActivity);
             }
         });

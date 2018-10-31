@@ -26,6 +26,10 @@ public class Sesiones {
         this.prefs.edit().putString("password",password).apply();
     }
 
+    public void setIdPeriodo(String id_periodo) {
+        this.prefs.edit().putString("id_periodo",id_periodo).apply();
+    }
+
     //Getters
     public String getUserId() {
         return this.prefs.getString("id_usuario","");
@@ -37,5 +41,9 @@ public class Sesiones {
 
     public String getPassword() {
         return this.prefs.getString("password","");
+    }
+
+    public String getIdPeriodo() {
+        return this.prefs.getString("id_periodo","");
     }
 }
