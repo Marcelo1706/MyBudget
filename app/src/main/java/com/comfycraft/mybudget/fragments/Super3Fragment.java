@@ -1,17 +1,23 @@
 package com.comfycraft.mybudget.fragments;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.comfycraft.mybudget.adapters.ProductosAdapter;
 import com.comfycraft.mybudget.R;
 import com.comfycraft.mybudget.modelos.ProductosModel;
+import com.comfycraft.mybudget.utilidades.Crud;
 import com.comfycraft.mybudget.utilidades.Sesiones;
 
 public class Super3Fragment extends Fragment {
@@ -23,6 +29,14 @@ public class Super3Fragment extends Fragment {
     private String nombre_usuario;
     private String password;
     private String id_periodo;
+    private String id_lista;
+
+    public View view;
+
+    Button agregar_prod;
+    EditText nombre_prod,precio_prod,cantidad_prod;
+
+    private String[] ids_productos;
 
     @Nullable
     @Override
@@ -33,16 +47,32 @@ public class Super3Fragment extends Fragment {
         nombre_usuario = session.getUserName();
         password = session.getPassword();
         id_periodo = session.getIdPeriodo();
+        id_lista = session.getIdLista();
 
-        View view = inflater.inflate(R.layout.fragment_supermercado_3, container, false);
-        final ProductosModel productosModel[] = new ProductosModel[] {
-                new ProductosModel("Producto 1",Float.parseFloat("1.99"),10),
-                new ProductosModel("Producto 2",Float.parseFloat("2.99"),20),
-                new ProductosModel("Producto 3",Float.parseFloat("3.99"),30),
-                new ProductosModel("Producto 4",Float.parseFloat("4.99"),40),
-                new ProductosModel("Producto 5",Float.parseFloat("5.99"),50),
-                new ProductosModel("Producto 6",Float.parseFloat("6.99"),60),
+        final View view = inflater.inflate(R.layout.fragment_supermercado_3, container, false);
+        ProductosModel productosModel[] = new ProductosModel[] {
+                new ProductosModel("Producto Vacío",Float.parseFloat("0"),0),
         };
+
+        Crud crud = new Crud(getContext());
+        Cursor select = crud.Select("productosLista","id_lista='"+id_lista+"'");
+        int valor = select.getCount();
+
+        int i = 0;
+        if(valor > 0){
+            if(select.moveToFirst()){
+                ids_productos = new String[valor];
+                productosModel = new ProductosModel[valor];
+                do{
+                    ids_productos[i] = select.getString(select.getColumnIndex("id_producto"));
+                    productosModel[i] = new ProductosModel(
+                      select.getString(select.getColumnIndex("nombre")),
+                      Float.parseFloat(select.getString(select.getColumnIndex("precio_unitario"))),
+                      Integer.parseInt(select.getString(select.getColumnIndex("cantidad")))
+                    );
+                }while(select.moveToNext());
+            }
+        }
 
         ProductosAdapter adapter = new ProductosAdapter(getContext(),R.layout.row_productos_super,productosModel);
 
@@ -62,6 +92,48 @@ public class Super3Fragment extends Fragment {
                 return false;
             }
         });
+
+        agregar_prod = view.findViewById(R.id.agregar_prod);
+
+        agregar_prod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registrarProducto(view);
+            }
+        });
+
         return view;
+    }
+
+    public void registrarProducto(View view) {
+        //Obtener los valores de los controles
+        nombre_prod = view.findViewById(R.id.nombre_prod);
+        precio_prod = view.findViewById(R.id.precio_prod);
+        cantidad_prod = view.findViewById(R.id.cantidad_prod);
+
+        String nombre = nombre_prod.getText().toString();
+        String precio = precio_prod.getText().toString();
+        String cantidad = cantidad_prod.getText().toString();
+        //Validacion
+        if(nombre.isEmpty() || precio.isEmpty() || cantidad.isEmpty() || Float.parseFloat(precio) == 0 || Float.parseFloat(cantidad) == 0){
+            Toast.makeText(getContext(),"Complete correctamente los campos para continuar",Toast.LENGTH_SHORT).show();
+        } else {
+            Crud crud = new Crud(getContext());
+            long resultado = crud.Insert("productosLista",
+                    new String[]{"nombre","precio_unitario","cantidad","id_lista"},
+                    new String[]{nombre,precio,cantidad,id_lista});
+            if(resultado > 0){
+                Toast.makeText(getContext(),"Producto Agregado Correctamente",Toast.LENGTH_SHORT).show();
+                Fragment super3 = new Super3Fragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction
+                        .replace(R.id.fragment_container,super3)
+                        .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
+            } else
+                Toast.makeText(getContext(),"No se pudo agregar el producto",Toast.LENGTH_SHORT).show();
+
+        }
     }
 }

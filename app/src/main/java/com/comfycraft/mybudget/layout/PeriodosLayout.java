@@ -81,8 +81,6 @@ public class PeriodosLayout extends AppCompatActivity {
                 while(prueba.moveToNext());
             }
         }
-        else
-            Toast.makeText(this,"No hay registros",Toast.LENGTH_SHORT).show();
 
         //Luego de tener los datos, procedemos a llenar el adapter, mandando a llamar
         //el layout que se diseñó para este listview, con los datos creados anteriormente

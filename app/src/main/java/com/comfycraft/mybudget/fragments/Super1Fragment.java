@@ -110,6 +110,7 @@ public class Super1Fragment extends Fragment {
         lstsuper.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                session.setIdLista(ids_listas[i-1]);
                 Fragment super3 = new Super3Fragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction
