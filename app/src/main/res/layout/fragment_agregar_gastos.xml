@@ -7,32 +7,32 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/titulo_agregar_pagos"
+        android:id="@+id/titulo_agregar_gastos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Agregar un Gasto"
+        android:text="Agregar un gasto"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/mensaje_agregar_pagos"
+        android:id="@+id/mensaje_agregar_gastos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Registre en esta pantalla, todos los gastos que ha realizado en este período, para poder llevar un mejor control de su presupuesto "
+        android:text="Registre en esta pantalla, todos los gastos fijos que realizará en este período. Por ejemplo los servicios básicos (agua, luz, teléfono)"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_agregar_pagos" />
+        app:layout_constraintTop_toBottomOf="@+id/titulo_agregar_gastos" />
 
     <EditText
-        android:id="@+id/nombre_pago"
+        android:id="@+id/nombre_gasto"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -40,13 +40,13 @@
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Nombre del Gasto"
+        android:text="Nombre del gasto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mensaje_agregar_pagos" />
+        app:layout_constraintTop_toBottomOf="@+id/mensaje_agregar_gastos" />
 
     <EditText
-        android:id="@+id/monto_pago"
+        android:id="@+id/monto_gasto"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -54,24 +54,25 @@
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:text="Monto"
+        android:text="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombre_pago" />
+        app:layout_constraintTop_toBottomOf="@+id/nombre_gasto" />
 
     <Button
-        android:id="@+id/guardar_pago"
+        android:id="@+id/guardar_gasto"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="7dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="5dp"
         android:background="@color/PM3435"
         android:text="Guardar"
         android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/monto_pago" />
+        app:layout_constraintTop_toBottomOf="@+id/monto_gasto" />
+
 
 
 </android.support.constraint.ConstraintLayout>
