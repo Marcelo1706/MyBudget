@@ -14,6 +14,10 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
+                    android:id="@+id/lstPeríodos"
+                    android:icon="@drawable/ic_assignment"
+                    android:title="@string/periodos" />
+                <item
                     android:id="@+id/nav_fondos"
                     android:icon="@drawable/ic_money"
                     android:title="@string/fondos" />

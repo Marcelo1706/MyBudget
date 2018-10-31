@@ -84,6 +84,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.lstPeríodos:
+                Intent inicio = new Intent(MainActivity.this,PeriodosLayout.class);
+                startActivity(inicio);
+                break;
             case R.id.nav_resumen:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ResumenFragment()).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
