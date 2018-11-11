@@ -126,7 +126,10 @@ public class Super3Fragment extends Fragment {
         String precio = precio_prod.getText().toString();
         String cantidad = cantidad_prod.getText().toString();
         //Validacion
-        if(nombre.isEmpty() || precio.isEmpty() || cantidad.isEmpty() || Float.parseFloat(precio) == 0 || Float.parseFloat(cantidad) == 0){
+
+        if(precio.equals(".")){
+            Toast.makeText(getActivity().getApplicationContext(),"Número Inválido",Toast.LENGTH_SHORT).show();
+        } else if(nombre.isEmpty() || precio.isEmpty() || cantidad.isEmpty() || Float.parseFloat(precio) == 0 || Float.parseFloat(cantidad) == 0){
             Toast.makeText(getContext(),"Complete correctamente los campos para continuar",Toast.LENGTH_SHORT).show();
         } else {
             Crud crud = new Crud(getContext());

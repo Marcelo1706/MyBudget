@@ -70,7 +70,9 @@ public class AgregarGastosFragment extends Fragment {
         String fondos = etgastos.getText().toString();
 
         //Validacion
-        if(fondos.isEmpty() || Float.parseFloat(fondos) == 0){
+        if(fondos.equals(".")){
+            Toast.makeText(getActivity().getApplicationContext(),"Número Inválido",Toast.LENGTH_SHORT).show();
+        } else if(fondos.isEmpty() || Float.parseFloat(fondos) == 0){
             Toast.makeText(getActivity().getApplicationContext(),"Debe ingresar un valor númerico mayor que 0",Toast.LENGTH_SHORT).show();
         } else {
             Crud insert = new Crud(getActivity().getApplicationContext());

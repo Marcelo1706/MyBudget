@@ -64,8 +64,8 @@ public class AgregarPerfil extends AppCompatActivity {
         }else if(!marcado){
             Toast.makeText(this,"Acepte Términos y condiciones",Toast.LENGTH_SHORT).show();
             flag++;
-        }else if(usuario.length() < 8 || usuario.length() > 20){
-            Toast.makeText(this,"El usuario debe tener entre 8 y 20 caracteres",Toast.LENGTH_SHORT).show();
+        }else if(usuario.length() < 3 || usuario.length() > 20){
+            Toast.makeText(this,"El usuario debe tener entre 3 y 20 caracteres",Toast.LENGTH_SHORT).show();
             flag++;
         }else if(clave1.length() < 8 || clave1.length() > 20){
             Toast.makeText(this,"La contraseña debe tener entre 8 y 20 caracteres",Toast.LENGTH_SHORT).show();

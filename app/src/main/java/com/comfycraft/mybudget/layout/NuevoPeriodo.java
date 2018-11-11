@@ -162,7 +162,15 @@ public class NuevoPeriodo extends AppCompatActivity implements View.OnClickListe
         }else if(!fechaIni.matches("\\d{2}/\\d{2}/\\d{4}") || !fechaFin.matches("\\d{2}/\\d{2}/\\d{4}")){
             Toast.makeText(this, "Formato de Fecha no válido\nEl formato es dd/mm/yyyy", Toast.LENGTH_SHORT).show();
             flag++;
+        }else {
+            try{
+                Float.parseFloat(montoinicial);
+            }catch(Exception e){
+                Toast.makeText(this, "Número Inválido", Toast.LENGTH_SHORT).show();
+                flag++;
+            }
         }
+
 
         if (flag == 0) {
             try {

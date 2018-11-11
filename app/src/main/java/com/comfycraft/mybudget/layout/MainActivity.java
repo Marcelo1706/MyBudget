@@ -104,10 +104,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Super1Fragment()).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
                 break;
-            case R.id.nav_cuenta:
-                Intent cuenta = new Intent(MainActivity.this, ModificarPerfil.class);
-                startActivity(cuenta);
-                break;
+            //case R.id.nav_cuenta:
+            //    Intent cuenta = new Intent(MainActivity.this, ModificarPerfil.class);
+            //    startActivity(cuenta);
+            //    break;
             case R.id.nav_about:
                 Intent help = new Intent(MainActivity.this, AcercaDe.class);
                 startActivity(help);
